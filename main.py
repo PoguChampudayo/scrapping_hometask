@@ -5,8 +5,9 @@ from constrains import URL, KEYWORDS
 
 if __name__ == '__main__':
     page_number = 1
+    last_page_number = 2
     data = []
-    while True:
+    while page_number != last_page_number + 1:
         sub_url = URL + f'/ru/all/page{page_number}/'
         response = requests.get(sub_url)
         time.sleep(0.1)
@@ -29,5 +30,5 @@ if __name__ == '__main__':
                     article_time = article_soup.find('time')
                     print(f"<{article_soup.find('time').attrs['title']}> - <{article.text}> - <{article_response.url}>")
 
-        page_number += 40
+        page_number += 1
     print('finished!')

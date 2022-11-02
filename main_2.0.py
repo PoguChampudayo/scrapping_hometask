@@ -12,11 +12,11 @@ def define_last_page(URL):
     
 def get_pages_responses(head_url, last_page_number):
     result = []
-    for i in range(1, int(last_page_number)):
+    for i in range(1, int(last_page_number) + 1):
         URL = head_url + f'/ru/all/page{i}/'
         result.append(URL)
     responses = (grequests.get(url) for url in result)
-    return grequests.map(responses)
+    return grequests.map(responses, size=15)
 
 def get_soup_articles_list(page_responses_list):
     result = []
@@ -34,7 +34,7 @@ def get_articles_href_list(soup_articles_list):
 
 def get_articles_responses(href_list):
     responses = (grequests.get(URL + href) for href in href_list)
-    return grequests.map(responses)
+    return grequests.map(responses, size=15)
         
 def get_articles_with_keywords(articles_response_list, keywords):
     for response in articles_response_list:
