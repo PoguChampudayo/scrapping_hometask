@@ -1,6 +1,7 @@
 import bs4
 import grequests
 import requests
+import time
 from constrains import URL, KEYWORDS
 
 def define_last_page(URL):
@@ -51,6 +52,10 @@ def get_articles_from_habr():
     get_articles_with_keywords(articles_responses, KEYWORDS)
     
 if __name__ == '__main__':
+
+    start_time = time.time()
     get_articles_from_habr()
+    print("--- %s seconds ---" % (time.time() - start_time))
+
 
     
