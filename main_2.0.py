@@ -1,9 +1,10 @@
 import bs4
+import requests
 import grequests
 from constrains import URL, KEYWORDS
 
 def define_last_page(URL):
-    response = grequests.get(URL)
+    response = requests.get(URL)
     soup = bs4.BeautifulSoup(response.text, features='html.parser')
     pages = soup.find(class_='tm-pagination__pages').find_all('a')
     return pages[-1].text.strip()
