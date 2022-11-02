@@ -39,6 +39,7 @@ def get_articles_with_keywords(articles_response_list, keywords):
         for word in keywords:
             if word in soup:
                 print(f"<{soup.find('time').attrs['title']}> - <{soup.find('h1').find('span').text}> - <{response.url}>")
+                break
 
 def get_articles_from_habr():
     pages_responses = get_pages_responses(URL, define_last_page(URL + '/ru/all/'))
